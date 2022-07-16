@@ -1,0 +1,241 @@
+<!--html教程 https://www.runoob.com/html/html-tutorial.html-->
+
+<!--宣告這是一個HTML文件瀏覽器才看得懂-->
+<!DOCTYPE html>
+<!--網頁的root element，一定要有一個，也只能有一個-->
+<html lang="zh-tw">
+    <!--宣告一些網頁的資訊-->
+    <head>
+        <!--宣告編碼形式是UTF-8，瀏覽器才看得懂中文，charset="UTF-8"是這個標籤元素的屬性-->
+        <meta charset="UTF-8">
+        <!--顯示在搜尋引擎的描述-->
+        <meta name="description" content="python教學網站">
+        <meta name="author" content="張翊翔 Sean Chang">
+        <meta name="keywords" content="張翊翔 Sean Chang, html, css, javascript, python, django教學網站">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--宣告網頁的標題-->
+        <title>程式教學網站</title>
+    </head>
+    <!--網頁主體標籤，宣告底下是網頁的內容-->
+    <body>
+        <!--基礎標籤之網頁主體表頭，共有h1、h2、...h6，字體大小由大變小，用於顯示文字標題-->
+        <h1 class="lesson_title" id="第一個標籤">
+            <!--基礎標籤之粗體、斜體-->
+            <i><b>Python系列教程-Pandas module</b></i>
+        </h1>
+        <!--基礎標籤之網頁內文-->
+        
+        <p>
+            <!--基礎標籤之粗體-->
+            <b>Pandas</b>是一種Python中常用於表格狀的數據處理模組，且Pandas是以numpy為基底開發的，提供了更進階的資料處理功能。
+        </p>
+        
+        <p><b>安裝方式，透過於以系統管理員權限於cmd執行以下指令:</b></p>
+        
+        <p><b style="color: orange;">pip install pandas</b></p>
+        <p>系統將自動執行下載、安裝pandas模組的動作，並安裝於目前使用的interpreter，安裝完畢後，可透過以下程式碼測試安裝是否成功:</p>
+        <p>
+            <b style="color: orange;">
+                import pandas as pd  # 導入模組並給予別名 
+                <br/>
+                print("pandas 當前版本:{}".format(pd.__version__))
+            </b>
+            <br/>
+            <br/>
+            Output:
+            <br/>
+            <b style="color: blue;">
+                pandas 當前版本:1.4.2
+            </b>
+        </p>
+
+
+        <h2>
+            <i>一、 Pandas 中的物件資料</i>
+        </h2>
+        <h3>
+            <i>1. Series object</i>
+        </h3>
+        <h4>
+            1.1 元素提取與切片
+        </h4>
+        <p>
+            Series是padas module 中的基礎物件，其背後的設計是基於numpy module 中的array，因此<b>numpy.array</b>的函數幾乎可以直接用於處理Series
+            <br/>
+            其不同於array之處在於，Series是由兩個物件組成:
+            <br/>
+            <ol type="A">
+
+                <li><b>Index</b>:用於定義索引標籤(表格位置)</li>
+                <li><b>Values</b>:儲存數值的array</li>
+            </ol>
+        </p>
+        <p>            詳見以下範例:        </p>
+        <p>
+            <b style="color: orange;">
+                # example2: 建立Series物件與提取數值
+                <br/>
+                series_obj = pd.Series(data=[1, 2, 3, 4, 5, 6], index=['a', 'b', 'c', 'd', 'e', 'f'])
+                <br/>
+                print("位置索引:\n{}".format(series_obj.index))
+                <br/>
+                print("數值array:\n{}".format(series_obj.values))
+                <br/>
+                print("使用數字位置提取，series_obj[2]:\n{}".format(series_obj[2]))
+                <br/>
+                print("使用數字位置切片，注意包含起始位置不含結束，series_obj[1:3]:\n{}".format(series_obj[1:3]))
+                <br/>
+                print("使用文字位置提取，series_obj['d']:\n{}".format(series_obj['d']))
+                <br/>
+                print("使用文字位置切片，注意包含起始與結束位置，series_obj['a':'b']:\n{}".format(series_obj['a':'b']))
+            </b>
+        </p>
+        <p>Output:</p>
+        <p style="color: blue;">
+            <b>
+                位置索引:
+                <br/>
+                Index(['a', 'b', 'c', 'd', 'e', 'f'], dtype='object')
+                <br/>
+                數值array:
+                <br/>
+                [1 2 3 4 5 6]
+                <br/>
+                使用數字位置提取，series_obj[2]:
+                <br/>
+                3
+                <br/>
+                使用數字位置切片，注意包含起始位置不含結束，series_obj[1:3]:
+                <br/>
+                b    2
+                <br/>
+                c    3
+                <br/>
+                dtype: int64
+                <br/>
+                使用文字位置提取，series_obj['d']:
+                <br/>
+                4
+                <br/>
+                使用文字位置切片，注意包含起始與結束位置，series_obj['a':'b']:
+                <br/>
+                a    1
+                <br/>
+                b    2
+            </b>
+        </p>
+        <h4>
+            1.2 字典方法
+        </h4>
+        
+        <p>            見以下範例:        </p>
+        <p>
+            <b style="color: orange;">
+                # example3: Series物件的字典方法
+                <br/>
+                print("將可迭代物件強制轉為陣列list，list(series_obj.iteritems()):\n{}".format(list(series_obj.iteritems())))
+                <br/>
+                # 可透過迴圈取出對應數值
+                <br/>
+                for idx, value in series_obj.iteritems():
+                <br/>
+                <blockquote>print(f"index:{idx}, values:{value}")</blockquote>
+            </b>
+        </p>
+        <p>Output:</p>
+        <p style="color: blue;">
+            <b>
+                將可迭代物件強制轉為陣列list，list(series_obj.iteritems()):
+                <br/>
+                [('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5), ('f', 6)]
+                <br/>
+                index:a, values:1
+                <br/>
+                index:b, values:2
+                <br/>
+                index:c, values:3
+                <br/>
+                index:d, values:4   
+                <br/>
+                index:e, values:5
+                <br/>
+                index:f, values:6
+            </b>
+        </p>
+        <h4>
+            1.3 Series 運算
+        </h4>
+
+        <p>            當兩個Series物件進行數值操作時，將會把對應相同的位置標籤的元素進行運算，若對應標籤不存在，若該欄位為數值型態預設將會以NaN填充(float)，見以下範例:        </p>
+        <p>
+            <b style="color: orange;">
+                # example4: Series進行運算
+                <br/>
+                series_obj2 = pd.Series(data=[20,30,40,50,60], index=['b', 'c', 'd', 'e', 'f'])
+                <br/>
+                series_obj_res = series_obj + series_obj2
+                <br/>
+                print("兩個series相加:\n{}".format(series_obj_res))
+            </b>
+        </p>
+        <p>Output:</p>
+        <p style="color: blue;">
+            <b>
+                兩個series相加:
+                <br/>
+                a     NaN
+                <br/>
+                b    22.0
+                <br/>
+                c    33.0
+                <br/>
+                d    44.0
+                <br/>
+                e    55.0
+                <br/>
+                f    66.0
+                <br/>
+                dtype: float64
+            </b>
+        </p>
+
+
+        <p style="color: red;">上面範例可以注意到，dtype已經從int轉為float64，這是因為有對應不到的索引，導致資料型態轉為與NaN相同的float</p>
+        
+        <h3><i>2.DataFrame object</i></h3>
+        <p>DataFrame是pandas中最重要的物件，他的物件型態可以想像成是一個資料表格，可以將許多python的資料格式轉換成表格型態，<br/>因為DataFrame是由Series組成的</p>
+        <p>以下將會說明在常用的pandas方法，以下範例示範建立DataFrame物件的常用方法:</p>>
+        <p>
+            <b style="color: orange;">
+                # example4: Series進行運算
+                <br/>
+                series_obj2 = pd.Series(data=[20,30,40,50,60], index=['b', 'c', 'd', 'e', 'f'])
+                <br/>
+                series_obj_res = series_obj + series_obj2
+                <br/>
+                print("兩個series相加:\n{}".format(series_obj_res))
+            </b>
+        </p>
+        <p>Output:</p>
+        <p style="color: blue;">
+            <b>
+                兩個series相加:
+                <br/>
+                a     NaN
+                <br/>
+                b    22.0
+                <br/>
+                c    33.0
+                <br/>
+                d    44.0
+                <br/>
+                e    55.0
+                <br/>
+                f    66.0
+                <br/>
+                dtype: float64
+            </b>
+        </p>
+        <a href="https://www.readfog.com/a/1638084002220969984">參考資料-編碼介紹</a>
+    </body>
+</html>

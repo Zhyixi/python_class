@@ -1,0 +1,147 @@
+<!--html教程 https://www.runoob.com/html/html-tutorial.html-->
+<script src="index.js" language="javascript" type="text/javascript" ></script>
+
+<!--宣告這是一個HTML文件瀏覽器才看得懂-->
+<!DOCTYPE html>
+<!--網頁的root element，一定要有一個，也只能有一個-->
+<html lang="zh-tw">
+    <!--宣告一些網頁的資訊-->
+    <head>
+        <!--宣告編碼形式是UTF-8，瀏覽器才看得懂中文，charset="UTF-8"是這個標籤元素的屬性-->
+        <meta charset="UTF-8">
+        <!--宣告網頁的標題-->
+        <title>Python 教學網站</title>
+    </head>
+    <!--網頁主體標籤，宣告底下是網頁的內容-->
+    <body>
+        <!--基礎標籤之網頁主體表頭，共有h1、h2、...h6，字體大小由大變小，用於顯示文字標題-->
+        <h1 class="lesson_title" id="第一個標籤">
+            <!--基礎標籤之粗體、斜體-->
+            <i><b>Python系列教程</b></i>
+        </h1>
+        <!--基礎標籤之網頁內文-->
+        <p>
+            <!--基礎標籤之粗體-->
+            <b>網路爬蟲</b>技術可以透過 url(uniform resource locator)訪問網站，並解析其HTML得到我們想要的資訊。
+            透過python自動執行一定步驟，可自動化的撈取資訊。
+            在講解網路爬蟲之前，還需要知道的基礎知識:
+        </p>
+        <h4>
+            1.1 超文字標示語言(Hypertext Markup Language, HTML）:
+        </h4>
+        <p>
+            是一種用來組織架構並呈現網頁內容的程式語言。
+            網頁內容的組成，可能包含了段落、清單、圖片或表格...等。簡單來說就是一種"用來描述網站顯示的內容是什麼的語言，也就是瀏覽器看得懂的語言"。
+            我們看見的網頁通常就是由一個個HTML檔案組成的。
+        </p>
+        <h4>
+            1.2 網路地址url(uniform resource locator)
+        </h4>
+        <P>
+            在瀏覽器輸入的網址，將會透過網路伺服器(屬於網頁後端知識，有需要再了解)，獲取對應的HTML網頁，並回傳給瀏覽器顯示給使用者看。
+        </P>
+        <h4>
+            1.3.HTTP、HTTPS (知道一下概念就好，有想當駭客的話再深入)
+        </h4>
+        <P>
+            HTTP( Hyper Text Transfer protocol)，超本文傳輸協定，是一種國際規範的網路通訊協定，
+            簡單粗暴的白話文說明就是，規定瀏覽器想獲得資訊，該使用怎樣的格式來請求資訊
+        </P>
+        <!--基礎標籤之換行-->
+        <br/>
+        <!--基礎標籤之水平線-->
+        <hr/>
+        <h2>
+            一、網路爬蟲(web crawler)
+        </h2>
+        <h3>
+            1.1. selenium 網路爬蟲工具，一個專門用來模仿網頁瀏覽器操作的模組。
+        </h3>
+        <h4>
+            1. 安裝模組: pip install selenium
+        </h4>
+        <h4>
+            2. 安裝瀏覽器驅動: https://chromedriver.chromium.org/downloads
+        </h4>
+        <p>
+            注意安裝版本需與瀏覽器一致，下載之後解壓縮，將會得到chromedriver檔案
+            之後將這個檔案的路徑作為參數即可驅動，後續會詳細說明
+        </p>
+        <h4>
+            3. 如何利用Xpath (Xml path)，提取想要解析的網頁區塊html元素(web element):
+        </h4>
+        <p>
+            HTML通常會有id、class、name等屬性，細節屬於HTML語法的部分，此處不細究。
+            <br/>
+            但是網頁作者如果沒有使用這樣的結構，我們此處使用Xpath的方式解決這個問題，利用Xpath可以絕對路徑或相對路徑提取網頁的指定區塊
+            <br/>
+            所謂Xpath的方式，就是以browser物件提供的方法find_element_by_xpath()實現指定網頁區塊的方法，
+            <br/>
+            請先打開test.html及其對應的結構圖(如下所示)
+            <br/>
+            Example:
+            <br/>
+            <blockquote>
+                a. 絕對路徑(少用):
+                    例如，想指定"h4"區塊，可以絕對路徑指定:
+                    /html/body/section/h4
+            </blockquote>
+            <blockquote>
+                b. 相對路徑(常用):
+                    例如，想指定"h4"區塊，可以相對路徑指定:
+                        a. //h4
+                        b. //body/section/h4
+                        c. //section/h4
+                        d. //body/*/*/h4
+            </blockquote>
+            <blockquote>
+                c. 實際操作請看程式碼web_crawler.py
+            </blockquote>
+            d. 請google搜尋"ChroPath for chrome"將此擴充功能加置瀏覽器
+        </p>
+        <img src="/pic/test_html_structure.png", width=500, height=300, title="測試網頁架構圖", class="picture">
+        <h4>
+            4. 補充說明-chrome外掛ChroPath:可方便取得網頁元素的Xpath
+        </h4>
+        <h2>
+            三、 HTML解析與BeautifulSoup(需額外課程說明)
+        </h2>
+        <p>
+            1. 網頁前端組成的三大語言
+            <blockquote>html:網頁骨架</blockquote>
+            <blockquote>css:網頁美觀與排版</blockquote>
+            <blockquote>JavaScript: 網頁功能(動作)</blockquote>
+            2.HTML教程:請參考以下連結:<a href="https://www.runoob.com/html/html-tutorial.html">HTML系列教程外部參考網站</a>
+            <br/>
+            <blockquote>HTML元素內容的屬性有下列3種:</blockquote>
+
+            <blockquote><blockquote>1.textContent: 內容不含任何標籤碼</blockquote></blockquote>
+            <blockquote><blockquote>2.innerHTML: 元素內容，含子標籤碼，但不含本身標籤碼</blockquote></blockquote>
+            <blockquote><blockquote>3.outerHTML: 元素內容，含子標籤碼，也含本身標籤碼</blockquote></blockquote>
+            如果有個HTML元素如下圖:
+            <br/>
+            <img src="pic/html_consis.png" width=500 class="picture">
+            <br/>
+            當使用BeautifulSoup模組解析HTML文件時
+
+
+
+        </p>
+
+        <!--影片與YOUTUBE影片嵌入<video src="" controls width="400"></video>-->
+
+        <br/>
+        <hr/>
+        <section class="book">
+            <h3 class="lesson_title">
+                ====python系列教程====
+            </h3>
+            <h4 class="author">
+                作者:張翊翔
+            </h4>
+            <p class="year">
+                年份:2022
+            </p>
+        </section>
+    </body>
+</html>

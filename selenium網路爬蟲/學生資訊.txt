@@ -1,0 +1,22 @@
+使用的開發環境 套件
+IDE  VScode
+Selenium 4.2.0
+Appium
+Python 3.10.5
+WIN10
+HTMLTestRunner
+https://tw511.com/a/01/37402.html
+https://walkonnet.com/archives/17708
+
+Python擴充 
+Microsoft官方提供的版本，點擊【Install】
+
+建立虛擬環境
+python -m venv 虛擬環境名稱
+
+
+https://www.appcoda.com.tw/automated-ui-testing-appium/
+
+run code 插件
+Ctrl+Alt+N 執行
+Ctrl+Alt+M 停止
